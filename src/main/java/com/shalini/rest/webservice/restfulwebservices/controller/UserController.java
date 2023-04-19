@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shalini.rest.webservice.resfulwebservices.service.UserDaoService;
+import com.shalini.rest.webservice.restfulwebservices.exception.UserNotFoundException;
 import com.shalini.rest.webservice.restfulwebservices.model.User;
 
 @RestController
@@ -37,7 +38,11 @@ public class UserController {
 	
 	@GetMapping("/users/{id}")
 	public User getUserById(@PathVariable("id") int id) {
-		return userDaoService.findByUserById(id);
+		User user = userDaoService.findByUserById(id);
+		if(user == null) {
+			throw new UserNotFoundException("id : "+id);
+		}
+		return user;
 	}
 	
 	@PostMapping("/users/add")

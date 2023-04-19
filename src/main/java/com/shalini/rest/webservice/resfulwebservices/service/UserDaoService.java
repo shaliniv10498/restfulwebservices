@@ -25,7 +25,7 @@ public class UserDaoService {
 	
 	public User findByUserById(int id) {
 		return  users.stream()
-				.filter(user -> user.getId().equals(id)).findFirst().get();
+				.filter(user -> user.getId().equals(id)).findFirst().orElse(null);
 	}
 	
 	public void addUser(String name, String birth) {
