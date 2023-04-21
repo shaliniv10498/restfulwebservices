@@ -2,8 +2,10 @@ package com.shalini.rest.webservice.restfulwebservices.exception;
 
 import java.time.LocalDate;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
@@ -13,7 +15,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class CustomisedResponseEntityHandler extends ResponseEntityExceptionHandler{
 
 	@ExceptionHandler(Exception.class)
-	public final ResponseEntity<Object> handleAllException(Exception ex, 
+	public final ResponseEntity<ErrorDetails> handleAllException(Exception ex, 
 			WebRequest request) throws Exception {
 		//customised error response, to get this we need to use ControllerAdvice too.
       ErrorDetails error = new ErrorDetails(LocalDate.now(), ex.getMessage(),ex.getLocalizedMessage());
@@ -24,12 +26,22 @@ public class CustomisedResponseEntityHandler extends ResponseEntityExceptionHand
 	//UserNotFoundException occurrs what kind of http status, 
 	//error response needs to returned
 	@ExceptionHandler(UserNotFoundException.class)
-	public final ResponseEntity<Object> handleUserNotException(Exception ex, 
+	public final ResponseEntity<ErrorDetails> handleUserNotException(Exception ex, 
 			WebRequest request) throws Exception {
 		//customised error response, to get this we need to use ControllerAdvice too.
       ErrorDetails error = new ErrorDetails(LocalDate.now(), ex.getMessage(),ex.getLocalizedMessage());
 	  
-      return new ResponseEntity(error, HttpStatus.BAD_REQUEST);
+      return new ResponseEntity(error, HttpStatus.NOT_FOUND);
+	}
+	
+	@Override
+	protected ResponseEntity<Object> handleMethodArgumentNotValid(
+			MethodArgumentNotValidException ex, HttpHeaders headers, 
+			HttpStatus status, WebRequest request) {
+        ErrorDetails error = new ErrorDetails(LocalDate.now(),
+        		ex.getFieldError().getDefaultMessage(),ex.getLocalizedMessage());
+        
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 	}
 	
 	

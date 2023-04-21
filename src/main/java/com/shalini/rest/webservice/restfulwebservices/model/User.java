@@ -1,9 +1,17 @@
 package com.shalini.rest.webservice.restfulwebservices.model;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class User {
     
 	private Integer id;
+	
+	@NotNull
+	@Size(min=2,message="Name shoule be of minimum length 2")
 	private String name ;
+	
+	@Size(min=3,message="Name shoule be of minimum length 3")
 	private String birthDate;
 	/**
 	 * @return the id

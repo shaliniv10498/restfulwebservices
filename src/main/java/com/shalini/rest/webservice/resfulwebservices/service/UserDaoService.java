@@ -33,4 +33,8 @@ public class UserDaoService {
 		User user = new User(userId,name,birth);
 		users.add(user);
 	}
+	
+	public void deleteUserById(int id) {
+		users.removeIf(user->user.getId() == id);
+	}
 }
