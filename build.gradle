@@ -23,6 +23,9 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	// https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui
     implementation 'org.springdoc:springdoc-openapi-ui:1.6.12'
+    //incase consumer wants xml type response instead of json 
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.14.2'
+    implementation 'org.springframework.boot:spring-boot-starter-hateoas'
 	
 }
 
