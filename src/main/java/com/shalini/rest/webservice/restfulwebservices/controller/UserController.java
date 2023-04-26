@@ -1,5 +1,8 @@
 package com.shalini.rest.webservice.restfulwebservices.controller;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 import java.util.List;
 
 import javax.validation.Valid;
@@ -15,7 +18,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 import com.shalini.rest.webservice.resfulwebservices.service.UserDaoService;
 import com.shalini.rest.webservice.restfulwebservices.exception.UserNotFoundException;

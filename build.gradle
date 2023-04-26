@@ -26,6 +26,9 @@ dependencies {
     //incase consumer wants xml type response instead of json 
     implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.14.2'
     implementation 'org.springframework.boot:spring-boot-starter-hateoas'
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.2'//for applying JSONPRoperty changes
+    
 	
 }
 

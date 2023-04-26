@@ -3,15 +3,21 @@ package com.shalini.rest.webservice.restfulwebservices.model;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+
+
 public class User {
     
 	private Integer id;
 	
 	@NotNull
 	@Size(min=2,message="Name shoule be of minimum length 2")
+	@JsonProperty("username")//annotation for returning username instead of name while return user object as response
 	private String name ;
 	
 	@Size(min=3,message="Name shoule be of minimum length 3")
+	@JsonProperty("birth_date")
 	private String birthDate;
 	/**
 	 * @return the id
