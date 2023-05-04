@@ -1,13 +1,17 @@
 package com.shalini.rest.webservice.restfulwebservices.model;
 
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -27,6 +31,10 @@ public class User {
 	@Size(min=3,message="Name shoule be of minimum length 3")
 	@JsonProperty("birth_date")
 	private String birthDate;
+	
+	@OneToMany(mappedBy = "user")
+	@JsonIgnore
+	private List<Post> posts;
 	/**
 	 * @return the id
 	 */
