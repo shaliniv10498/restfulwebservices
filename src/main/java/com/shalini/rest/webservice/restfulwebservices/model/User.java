@@ -82,6 +82,18 @@ public class User {
 		this.name = name;
 		this.birthDate = birthDate;
 	}
+	/**
+	 * @return the posts
+	 */
+	public List<Post> getPosts() {
+		return posts;
+	}
+	/**
+	 * @param posts the posts to set
+	 */
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", birthDate=" + birthDate + "]";
